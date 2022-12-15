@@ -6,7 +6,9 @@ import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
 
 function Login() {
-  const responseGoogle = (response) => {};
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
@@ -26,7 +28,7 @@ function Login() {
 
           <div className="shadow-2xl">
             <GoogleLogin
-              clientId=""
+              clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
               render={(renderProps) => (
                 <button
                   type="button"
@@ -40,7 +42,7 @@ function Login() {
               )}
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              cookiePolicy="signle_host_origin"
+              cookiePolicy="single_host_origin"
             />
           </div>
         </div>
