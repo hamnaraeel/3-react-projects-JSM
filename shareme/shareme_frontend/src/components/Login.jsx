@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
+import { client } from "../client";
 
 function Login() {
   const clientId =
     "323471516759-2f0iu5ql9ifvrieo28tdltpifsg202it.apps.googleusercontent.com";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initClient = () => {
@@ -19,7 +21,7 @@ function Login() {
     };
     gapi.load("client:auth2", initClient);
   });
-  const onSuccess = (response) => {
+  const responseGoogle = (response) => {
     console.log("success:", response);
     localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj;
@@ -30,6 +32,10 @@ function Login() {
       userName: name,
       image: imageUrl,
     };
+
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true });
+    });
   };
   const onFailure = (err) => {
     console.log("failed:", err);
@@ -68,7 +74,7 @@ function Login() {
             <GoogleLogin
               clientId={clientId}
               buttonText="Sign in with Google"
-              onSuccess={onSuccess}
+              onSuccess={responseGoogle}
               onFailure={onFailure}
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
