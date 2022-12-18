@@ -37,9 +37,9 @@ function Login() {
       navigate("/", { replace: true });
     });
   };
-  const onFailure = (err) => {
-    console.log("failed:", err);
-  };
+  // const onFailure = (err) => {
+  //   console.log("failed:", err);
+  // };
 
   // const responseGoogle = (response) => {
   // console.log(response);
@@ -58,7 +58,7 @@ function Login() {
       <div className="relative w-full h-full">
         <video
           src={shareVideo}
-          type="bideo/mp4"
+          type="video/mp4"
           loop
           controls={false}
           muted
@@ -74,8 +74,6 @@ function Login() {
             <GoogleLogin
               clientId={clientId}
               buttonText="Sign in with Google"
-              onSuccess={responseGoogle}
-              onFailure={onFailure}
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={(renderProps) => (
@@ -89,6 +87,8 @@ function Login() {
                   Sign in with Google
                 </button>
               )}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
               // onSuccess={responseGoogle}
               // onFailure={responseGoogle}
               // cookiePolicy="single_host_origin"
