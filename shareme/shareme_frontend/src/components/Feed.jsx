@@ -28,12 +28,17 @@ const Feed = () => {
       });
     }
   }, [categoryId]);
+
   const ideaName = categoryId || "new";
   if (loading) {
+    // if (!pins?.length) return <h2>No pins available</h2>;
     return (
       <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />
     );
   }
+
+  if (!pins?.length) return <h2>No pins available</h2>;
+
   return <div>{pins && <MasonryLayout pins={pins} />}</div>;
 };
 

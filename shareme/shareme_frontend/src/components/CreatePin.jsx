@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { client } from "../client";
 import Spinner from "./Spinner";
 import { categories } from "../utils/data";
-import { Circles } from "react-loader-spinner";
 // categories [{name: "sport", image: ''}]
 
 const CreatePin = ({ user }) => {
@@ -89,7 +88,7 @@ const CreatePin = ({ user }) => {
       <div className="flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5 w-full">
         <div className="bg-secondaryColor p-3 flex flex flex-0.7 w-full">
           <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
-            {loading && <Circles />}
+            {loading && <Spinner />}
             {wrongImageType && <p>Wrong image type</p>}
             {!imageAsset ? (
               <label>
